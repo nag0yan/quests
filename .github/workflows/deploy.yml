@@ -32,5 +32,3 @@ jobs:
           project: "quests-70"
           entrypoint: "main.ts"
           root: "."
-          
-          

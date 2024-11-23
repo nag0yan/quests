@@ -2,7 +2,7 @@ import { useSignal } from "@preact/signals";
 import ChevronLeft from "https://deno.land/x/tabler_icons_tsx@0.0.7/tsx/chevron-left.tsx";
 import ChevronRight from "https://deno.land/x/tabler_icons_tsx@0.0.7/tsx/chevron-right.tsx";
 import { Question } from "../data/surveyQuestions.ts";
-import SurveyConfirmation from "./SurveyConfirmation.tsx"
+import SurveyConfirmation from "./SurveyConfirmation.tsx";
 
 interface SurveyProps {
   questions: Question[];
@@ -50,12 +50,17 @@ export default function Survey({ questions }: SurveyProps) {
   }
 
   const handleEdit = () => {
-    throw new Error("Not implemented");
-  }
+    if (confirm("回答をやり直しますか？")) {
+      currentStep.value = 0;
+      answers.value = {};
+      isConfirming.value = false;
+      showOptions.value = true;
+    }
+  };
 
   const handleSubmit = () => {
     throw new Error("Not implemented");
-  }
+  };
 
   if (isConfirming.value) {
     return (
@@ -63,8 +68,10 @@ export default function Survey({ questions }: SurveyProps) {
         questions={questions}
         answers={answers.value}
         onEdit={handleEdit}
-        onSubmit={handleSubmit}></SurveyConfirmation>
-    )
+        onSubmit={handleSubmit}
+      >
+      </SurveyConfirmation>
+    );
   }
 
   return (

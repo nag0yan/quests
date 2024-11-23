@@ -9,21 +9,22 @@ interface SurveyConfirmationProps {
   onSubmit: () => void;
 }
 
-export default function SurveyConfirmation({ 
-  questions, 
-  answers, 
-  onEdit, 
-  onSubmit 
+export default function SurveyConfirmation({
+  questions,
+  answers,
+  onEdit,
+  onSubmit,
 }: SurveyConfirmationProps) {
   const getAnswerText = (question: Question, answerValue: string) => {
-    return question.options.find(opt => opt.value === answerValue)?.text || '';
+    return question.options.find((opt) => opt.value === answerValue)?.text ||
+      "";
   };
 
   return (
     <div class="w-full max-w-2xl mx-auto">
       <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
         <h2 class="text-2xl font-semibold mb-6 text-center">回答内容の確認</h2>
-        
+
         <div class="space-y-6 mb-8">
           {questions.map((question) => (
             <div key={question.id} class="border-b pb-4">
@@ -45,13 +46,13 @@ export default function SurveyConfirmation({
             <Check class="w-5 h-5" />
             回答を送信する
           </button>
-          
+
           <button
             onClick={onEdit}
             class="w-full py-3 px-4 text-gray-600 rounded-lg hover:bg-gray-100 transition-colors flex items-center justify-center gap-2"
           >
             <ArrowLeft class="w-5 h-5" />
-            回答を修正する
+            やりなおす
           </button>
         </div>
       </div>

@@ -16,21 +16,26 @@ export const surveyQuestions: Question[] = [
     question: "森の中で光る石を見つけました。どうしますか？",
     options: [
       { id: "1a", text: "すぐに拾って持ち帰る", value: "immediate_action" },
-      { id: "1b", text: "しばらく観察してから判断する", value: "careful_observation" },
+      {
+        id: "1b",
+        text: "しばらく観察してから判断する",
+        value: "careful_observation",
+      },
       { id: "1c", text: "そっとその場を離れる", value: "risk_averse" },
-      { id: "1d", text: "誰かに相談してから決める", value: "seek_advice" }
-    ]
+      { id: "1d", text: "誰かに相談してから決める", value: "seek_advice" },
+    ],
   },
-  // {
-  //   id: 2,
-  //   question: "魔法の泉があります。一度飲むと何かが変化するそうです。飲みますか？",
-  //   options: [
-  //     { id: "2a", text: "迷わず飲んでみる", value: "adventurous" },
-  //     { id: "2b", text: "効果を調べてから決める", value: "analytical" },
-  //     { id: "2c", text: "他の人の経験を待つ", value: "cautious" },
-  //     { id: "2d", text: "飲まないことにする", value: "conservative" }
-  //   ]
-  // },
+  {
+    id: 2,
+    question:
+      "魔法の泉があります。一度飲むと何かが変化するそうです。飲みますか？",
+    options: [
+      { id: "2a", text: "迷わず飲んでみる", value: "adventurous" },
+      { id: "2b", text: "効果を調べてから決める", value: "analytical" },
+      { id: "2c", text: "他の人の経験を待つ", value: "cautious" },
+      { id: "2d", text: "飲まないことにする", value: "conservative" },
+    ],
+  },
   // {
   //   id: 3,
   //   question: "永遠の若さか、無限の知恵か、選べるとしたら？",
