@@ -58,8 +58,28 @@ export default function Survey({ questions }: SurveyProps) {
     }
   };
 
-  const handleSubmit = () => {
-    throw new Error("Not implemented");
+  const getAnswerSelections = (question: Question, answerValue: string) => {
+    return question.options.find((opt) => opt.value === answerValue);
+  };
+
+  const handleSubmit = async () => {
+    const selections = questions.map((
+      question,
+    ) => getAnswerSelections(question, answers.value[question.id]));
+    const username = "aa";
+
+    const res = await fetch(`/api/survey/${username}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(selections),
+    });
+    if (res.status === 201) {
+      alert("回答を受け付けました");
+    } else {
+      alert("回答の送信に失敗しました");
+    }
   };
 
   if (isConfirming.value) {
