@@ -3,6 +3,7 @@ import ChevronLeft from "https://deno.land/x/tabler_icons_tsx@0.0.7/tsx/chevron-
 import ChevronRight from "https://deno.land/x/tabler_icons_tsx@0.0.7/tsx/chevron-right.tsx";
 import { Question } from "../data/surveyQuestions.ts";
 import SurveyConfirmation from "./SurveyConfirmation.tsx";
+import AnalysisDisplay from "./Analysis.tsx";
 
 interface SurveyProps {
   questions: Question[];
@@ -18,6 +19,7 @@ export default function Survey({ questions }: SurveyProps) {
   const hasAnsweredCurrent = Boolean(answers.value[currentQuestion.id]);
   const isLastQuestion = currentStep.value === questions.length - 1;
   const isConfirming = useSignal(false);
+  const answerSubmitted = useSignal(false);
 
   const handleNext = () => {
     if (isLastQuestion && hasAnsweredCurrent) {
@@ -84,7 +86,15 @@ export default function Survey({ questions }: SurveyProps) {
     } else {
       alert("回答の送信に失敗しました");
     }
+    answerSubmitted.value = true;
   };
+
+  if (answerSubmitted.value) {
+    return (
+      <AnalysisDisplay answers={answers.value} questions={questions}>
+      </AnalysisDisplay>
+    );
+  }
 
   if (isConfirming.value) {
     return (
