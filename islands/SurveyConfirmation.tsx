@@ -1,8 +1,10 @@
-import Check from "https://deno.land/x/tabler_icons_tsx@0.0.7/tsx/check.tsx";
 import ArrowLeft from "https://deno.land/x/tabler_icons_tsx@0.0.7/tsx/arrow-left.tsx";
+import Check from "https://deno.land/x/tabler_icons_tsx@0.0.7/tsx/check.tsx";
 import { Question } from "../data/surveyQuestions.ts";
+import { Signal } from "https://esm.sh/v135/@preact/signals@1.2.2/X-ZS8q/dist/signals.js";
 
 interface SurveyConfirmationProps {
+  username: Signal<string>;
   questions: Question[];
   answers: Record<number, string>;
   onEdit: () => void;
@@ -10,6 +12,7 @@ interface SurveyConfirmationProps {
 }
 
 export default function SurveyConfirmation({
+  username,
   questions,
   answers,
   onEdit,
@@ -36,6 +39,21 @@ export default function SurveyConfirmation({
               </p>
             </div>
           ))}
+        </div>
+
+        <p class="text-gray-500 text-sm mb-4 mx-auto">
+          最後に、あなたの名前を教えてください。
+        </p>
+        <div class="flex items-center gap-4 mb-8">
+          <label for="username" class="text-gray-700"></label>
+          <input
+            id="username"
+            type="text"
+            class="w-full py-2 px-4 bg-gray-100 text-center text-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white"
+            onChange={(e: any) => {
+              username.value = e.target!.value;
+            }}
+          />
         </div>
 
         <div class="space-y-4">

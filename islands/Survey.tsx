@@ -12,6 +12,7 @@ export default function Survey({ questions }: SurveyProps) {
   const currentStep = useSignal(0);
   const answers = useSignal<Record<number, string>>({});
   const showOptions = useSignal(false);
+  const username = useSignal("");
 
   const currentQuestion = questions[currentStep.value];
   const hasAnsweredCurrent = Boolean(answers.value[currentQuestion.id]);
@@ -63,12 +64,15 @@ export default function Survey({ questions }: SurveyProps) {
   };
 
   const handleSubmit = async () => {
+    if (!username.value) {
+      alert("ユーザー名を入力してください");
+      return;
+    }
     const selections = questions.map((
       question,
     ) => getAnswerSelections(question, answers.value[question.id]));
-    const username = "aa";
 
-    const res = await fetch(`/api/survey/${username}`, {
+    const res = await fetch(`/api/survey/${username.value}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -85,6 +89,7 @@ export default function Survey({ questions }: SurveyProps) {
   if (isConfirming.value) {
     return (
       <SurveyConfirmation
+        username={username}
         questions={questions}
         answers={answers.value}
         onEdit={handleEdit}
