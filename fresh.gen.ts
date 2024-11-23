@@ -7,6 +7,7 @@ import * as $_app from "./routes/_app.tsx";
 import * as $_middleware from "./routes/_middleware.ts";
 import * as $api_survey_username_ from "./routes/api/survey/[username].ts";
 import * as $index from "./routes/index.tsx";
+import * as $survey_index from "./routes/survey/index.tsx";
 import * as $Survey from "./islands/Survey.tsx";
 import * as $SurveyConfirmation from "./islands/SurveyConfirmation.tsx";
 import type { Manifest } from "$fresh/server.ts";
@@ -18,6 +19,7 @@ const manifest = {
     "./routes/_middleware.ts": $_middleware,
     "./routes/api/survey/[username].ts": $api_survey_username_,
     "./routes/index.tsx": $index,
+    "./routes/survey/index.tsx": $survey_index,
   },
   islands: {
     "./islands/Survey.tsx": $Survey,
